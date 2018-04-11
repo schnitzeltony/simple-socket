@@ -13,6 +13,10 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef IMMEDIATE_OUT
+	return 0;
+#endif
+
 	int sockfd = 0, n = 0;
 	char recvBuff[1024];
 	struct sockaddr_in serv_addr;
