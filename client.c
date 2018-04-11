@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	printf("-- Client socket on port 5000 open --- \n");
 
 	/* Information like IP address of the remote host and its port is
 	 * bundled up in a structure and a call to function connect() is made
@@ -59,11 +58,13 @@ int main(int argc, char *argv[])
 		printf("\n Error : Connect Failed \n");
 		return 1;
 	}
+	printf("-- Client connected --- \n");
 
 	/* Once the sockets are connected, the server sends the data (date+time)
 	 * on clients socket through clients socket descriptor and client can read it
 	 * through normal read call on the its socket descriptor.
 	 */
+	printf("-- Client receive: ");
 	while ( (n = read(sockfd, recvBuff, sizeof(recvBuff)-1)) > 0)
 	{
 		recvBuff[n] = 0;
@@ -77,6 +78,7 @@ int main(int argc, char *argv[])
 	{
 		printf("\n Read error \n");
 	}
+	printf("\n-- Client End --- \n");
 
 	return 0;
 }

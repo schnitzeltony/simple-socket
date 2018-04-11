@@ -28,7 +28,6 @@ int main(int argc, char *argv[])
 	listenfd = socket(AF_INET, SOCK_STREAM, 0);
 	memset(&serv_addr, '0', sizeof(serv_addr));
 	memset(sendBuff, '0', sizeof(sendBuff));
-	printf("-- Server socket on port 5000 open --- \n");
 
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -44,14 +43,17 @@ int main(int argc, char *argv[])
 	 * socket.
 	 */
 	listen(listenfd, 10);
+	printf("-- Server listening on port 5000 --- \n");
 
-	while(1)
+    int received = 0;
+	while(!received)
 	{
 		/* In the call to accept(), the server is put to sleep and when for an incoming
 		 * client request, the three way TCP handshake* is complete, the function accept()
 		 * wakes up and returns the socket descriptor representing the client socket.
 		 */
 		connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
+		printf("-- Server incoming connection --- \n");
 
 		/* As soon as server gets a request from client, it prepares the date and time and
 		 * writes on the client socket through the descriptor returned by accept()
@@ -61,7 +63,8 @@ int main(int argc, char *argv[])
 		write(connfd, sendBuff, strlen(sendBuff));
 
 		close(connfd);
-		sleep(1);
+		++received;
 	}
-	printf("-- End --- \n");
+	close(listenfd);
+	printf("\n-- Server End --- \n");
 }
