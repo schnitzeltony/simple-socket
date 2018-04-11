@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
 	char sendBuff[1025];
 	time_t ticks;
 
-	printf("-- Open socket on port 5000 --- \n");
 	/* creates an UN-named socket inside the kernel and returns
 	 * an integer known as socket descriptor
 	 * This function takes domain/family as its first argument.
@@ -29,6 +28,7 @@ int main(int argc, char *argv[])
 	listenfd = socket(AF_INET, SOCK_STREAM, 0);
 	memset(&serv_addr, '0', sizeof(serv_addr));
 	memset(sendBuff, '0', sizeof(sendBuff));
+	printf("-- Server socket on port 5000 open --- \n");
 
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);

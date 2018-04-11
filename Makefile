@@ -1,9 +1,9 @@
 all: client server
 
-client:
+client: client.c
 	$(CC) $(CFLAGS) -o client client.c $(LDFLAGS)
 
-server:
+server: server.c
 	$(CC) $(CFLAGS) -o server server.c $(LDFLAGS)
 
 clean:

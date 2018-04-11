@@ -47,6 +47,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	printf("-- Client socket on port 5000 open --- \n");
+
 	/* Information like IP address of the remote host and its port is
 	 * bundled up in a structure and a call to function connect() is made
 	 * which tries to connect this socket with the socket (IP address and port)
